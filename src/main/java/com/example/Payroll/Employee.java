@@ -11,13 +11,14 @@ class Employee {
   private @Id @GeneratedValue Long id;
   private String name;
   private String role;
+  private int salary;
 
   Employee() {}
 
-  Employee(String name, String role) {
-
+  Employee(String name, String role, int salary) {
     this.name = name;
     this.role = role;
+    this.salary = salary;
   }
 
   public Long getId() {
@@ -32,6 +33,10 @@ class Employee {
     return this.role;
   }
 
+  public int getSalary() {
+    return this.salary;
+  }
+
   public void setId(Long id) {
     this.id = id;
   }
@@ -42,6 +47,10 @@ class Employee {
 
   public void setRole(String role) {
     this.role = role;
+  }
+
+  public void setSalary(int salary) {
+    this.salary = salary;
   }
 
   @Override
@@ -63,6 +72,6 @@ class Employee {
 
   @Override
   public String toString() {
-    return "Employee{" + "id=" + this.id + ", name='" + this.name + '\'' + ", role='" + this.role + '\'' + '}';
+    return "Employee{" + "id=" + this.id + ", name='" + this.name + '\'' + ", role='" + this.role + '\'' + ", salary='" + this.salary + '\'' + '}';
   }
 }
