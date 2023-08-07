@@ -1,4 +1,5 @@
 package com.example.Payroll;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -25,6 +26,40 @@ class EmployeeController {
   @GetMapping("/employees")
   List<Employee> all() {
     return repository.findAll();
+  }
+
+  // Get all roles
+  @GetMapping("/employees/roles")
+  List<String> allRoles() {
+    List<Employee> employees = repository.findAll();
+    List<String> roles = new ArrayList<String>();
+    for (Employee employee : employees) { 
+      roles.add(employee.getRole());
+    }
+    return roles;
+  }
+
+  // Get all salaries
+  @GetMapping("/employees/salaries")
+  List<Integer> allSalaries() {
+    List<Employee> employees = repository.findAll();
+    List<Integer> salaries = new ArrayList<Integer>();
+    for (Employee employee : employees) { 
+      salaries.add(employee.getSalary());
+    }
+    return salaries;
+  }
+
+  // Get all unique companyIds
+  @GetMapping("/employees/companies")
+  List<String> allCompanies() {
+    List<Employee> employees = repository.findAll();
+    List<String> companies = new ArrayList<String>();
+    for (Employee employee : employees) { 
+      if (!companies.contains(employee.getCompanyId()))
+        companies.add(employee.getCompanyId());
+    }
+    return companies;
   }
 
   // end::get-aggregate-root[]

@@ -12,13 +12,15 @@ class Employee {
   private String name;
   private String role;
   private int salary;
+  private String companyId;
 
   Employee() {}
 
-  Employee(String name, String role, int salary) {
+  Employee(String name, String role, int salary, String companyId) {
     this.name = name;
     this.role = role;
     this.salary = salary;
+    this.companyId = companyId;
   }
 
   public Long getId() {
@@ -37,6 +39,10 @@ class Employee {
     return this.salary;
   }
 
+  public String getCompanyId() {
+    return this.companyId;
+  }
+
   public void setId(Long id) {
     this.id = id;
   }
@@ -51,6 +57,10 @@ class Employee {
 
   public void setSalary(int salary) {
     this.salary = salary;
+  }
+
+  public void setCompanyId(String companyId) {
+    this.companyId = companyId;
   }
 
   @Override
