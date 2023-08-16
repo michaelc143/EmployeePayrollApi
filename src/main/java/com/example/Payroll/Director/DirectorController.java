@@ -43,10 +43,26 @@ public class DirectorController {
         List<Director> directors = repository.findAll();
         List<String> companies = new ArrayList<String>();
         for (Director director : directors) { 
-        if (!directors.contains(director.getCompanyId()))
-            companies.add(director.getCompanyId());
+            if (!companies.contains(director.getCompanyId()))
+                companies.add(director.getCompanyId());
         }
         return companies;
+    }
+
+    //Update a director
+    @PutMapping("/directors/{id}")
+    Director replaceDirector(@RequestBody Director newDirector, @PathVariable Long id) {
+        return repository.findById(id)
+        .map(director -> {
+            director.setName(newDirector.getName());
+            director.setDepartment(newDirector.getDepartment());
+            director.setCompanyId(newDirector.getCompanyId());
+            return repository.save(director);
+        })
+        .orElseGet(() -> {
+            newDirector.setId(id);
+            return repository.save(newDirector);
+        });
     }
 
     //Create new employee
